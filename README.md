@@ -31,7 +31,7 @@
 
 ```bash
 git clone https://github.com/psikarwal/Find-Petrol-Pump.git
-cd petrolpumps
+cd Find-Petrol-Pump
 npm install
 react-native start
 ```
