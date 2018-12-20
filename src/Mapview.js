@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, BackHandler } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 
 class Mapview extends Component {
@@ -10,9 +10,21 @@ class Mapview extends Component {
     };
   };
 
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  }
+
+  handleBackPress = () => {
+    this.props.navigation.navigate('PumpsList');
+    return true;
+  };
+
   render() {
     let venues = this.props.navigation.getParam('venues', []);
-
     return (
       <View style={styles.container}>
         <MapView
